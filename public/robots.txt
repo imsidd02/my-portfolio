@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imsiddharthsingh.vercel.app/sitemap.xml
