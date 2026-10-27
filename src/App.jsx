@@ -9,8 +9,12 @@ import Contact from "./components/sections/Contact";
 import { CommandPalette } from "./components/layout/CommandPalette";
 import { Analytics } from "@vercel/analytics/react";
 import { MotionConfig } from "framer-motion";
+import { useRef } from "react";
+import ScrollProgress from "./components/layout/ScrollProgress";
 
 function App() {
+    const mainRef = useRef(null);
+
     return (
         <MotionConfig reducedMotion="user">
             <div className="bg-dark text-white min-h-screen relative">
@@ -20,9 +24,10 @@ function App() {
                 >
                     Skip to content
                 </a>
+                <ScrollProgress target={mainRef} />
                 <CommandPalette />
                 <Navbar />
-                <main id="main">
+                <main id="main" ref={mainRef}>
                     <Hero />
                     <About />
                     <Skills />

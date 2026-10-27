@@ -1,23 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Mail, User, Briefcase, FileText, Code } from "lucide-react";
+import { Copy, Mail, User, Briefcase, FileText, Code, Layers } from "lucide-react";
 import { profile } from "../../data/content";
 
 export const CommandPalette = () => {
     const [open, setOpen] = useState(false);
+    const returnFocusRef = useRef(null);
 
     useEffect(() => {
         const down = (e) => {
             if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
                 e.preventDefault();
                 setOpen((open) => !open);
+            } else if (e.key === "Escape") {
+                setOpen(false);
             }
         };
 
         document.addEventListener("keydown", down);
         return () => document.removeEventListener("keydown", down);
     }, []);
+
+    // Return focus to wherever the visitor was once the palette closes.
+    useEffect(() => {
+        if (open) {
+            returnFocusRef.current = document.activeElement;
+        } else if (returnFocusRef.current) {
+            returnFocusRef.current.focus?.();
+            returnFocusRef.current = null;
+        }
+    }, [open]);
 
     const copyEmail = () => {
         navigator.clipboard.writeText(profile.email);
@@ -58,10 +71,16 @@ export const CommandPalette = () => {
                         exit={{ opacity: 0, scale: 0.95, y: -20 }}
                         transition={{ duration: 0.2 }}
                         onClick={(e) => e.stopPropagation()}
+                        // cmdk moves through items with the arrow keys, so Tab stays inside the dialog
+                        onKeyDown={(e) => e.key === "Tab" && e.preventDefault()}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Command menu"
                         className="w-full max-w-lg bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
                     >
-                        <Command className="w-full">
+                        <Command className="w-full" label="Command menu">
                             <Command.Input
+                                autoFocus
                                 placeholder="Type a command or search..."
                                 className="w-full bg-transparent border-b border-white/10 px-4 py-4 text-white placeholder:text-gray-500 focus:outline-none"
                             />
@@ -76,6 +95,9 @@ export const CommandPalette = () => {
                                     </Command.Item>
                                     <Command.Item onSelect={() => scrollTo("about")} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
                                         <User size={16} /> About
+                                    </Command.Item>
+                                    <Command.Item onSelect={() => scrollTo("skills")} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
+                                        <Layers size={16} /> Skills
                                     </Command.Item>
                                     <Command.Item onSelect={() => scrollTo("projects")} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
                                         <Code size={16} /> Projects

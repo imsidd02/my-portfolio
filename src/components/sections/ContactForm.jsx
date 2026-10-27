@@ -87,7 +87,8 @@ const ContactForm = () => {
             noValidate
             className="space-y-6 bg-white/5 border border-white/10 p-8 rounded-2xl relative overflow-hidden"
         >
-            <div role="status" aria-live="polite">
+            {/* Out of the layout flow so the empty live region adds no spacing above the fields */}
+            <div role="status" aria-live="polite" className="absolute inset-0 m-0 pointer-events-none">
                 {status === "success" && (
                     <div className="absolute inset-0 bg-dark/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8 rounded-2xl">
                         <CheckCircle className="text-green-500 w-16 h-16 mb-4" aria-hidden="true" />

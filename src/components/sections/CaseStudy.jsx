@@ -42,7 +42,7 @@ const CaseStudy = ({ study, index }) => (
         className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-10"
     >
         {study.image && (
-            <div className="mb-8 rounded-xl overflow-hidden border border-white/10 bg-zinc-900">
+            <div className="mb-8 rounded-xl overflow-hidden border border-white/10 bg-zinc-900 lg:aspect-[3/1]">
                 <Picture
                     sources={study.image.sources}
                     fallback={study.image.fallback}
@@ -50,7 +50,7 @@ const CaseStudy = ({ study, index }) => (
                     height={study.image.height}
                     alt={study.image.alt}
                     sizes="(min-width: 1280px) 1104px, 100vw"
-                    className="w-full h-auto block"
+                    className="w-full h-auto block lg:h-full lg:object-cover lg:object-top"
                 />
             </div>
         )}

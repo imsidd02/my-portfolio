@@ -29,8 +29,8 @@ const Experience = () => {
 
                             <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
-                                    <h3 className="text-xl font-bold flex items-center gap-2">
-                                        <Briefcase size={18} className="text-primary" aria-hidden="true" />
+                                    <h3 className="text-xl font-bold flex items-start gap-2">
+                                        <Briefcase size={18} className="text-primary shrink-0 mt-1" aria-hidden="true" />
                                         {exp.role}
                                     </h3>
                                     <span className="text-sm text-gray-400 flex items-center gap-1 mt-2 sm:mt-0">

@@ -2,6 +2,12 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Command } from "lucide-react";
 import { profile } from "../../data/content";
 
+// Show the shortcut the visitor's keyboard actually has.
+const modifierKey =
+    typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)
+        ? "⌘"
+        : "Ctrl";
+
 const MagneticButton = ({ children, href, primary }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -61,7 +67,7 @@ const Hero = () => {
                 >
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs font-medium backdrop-blur-md cursor-default shadow-lg">
                         <Command size={14} className="text-primary" />
-                        <span>Press <kbd className="font-sans px-1.5 py-0.5 rounded-md bg-white/10 text-white border border-white/20 shadow-sm">⌘</kbd> <kbd className="font-sans px-1.5 py-0.5 rounded-md bg-white/10 text-white border border-white/20 shadow-sm">K</kbd> for command menu</span>
+                        <span>Press <kbd className="font-sans px-1.5 py-0.5 rounded-md bg-white/10 text-white border border-white/20 shadow-sm">{modifierKey}</kbd> <kbd className="font-sans px-1.5 py-0.5 rounded-md bg-white/10 text-white border border-white/20 shadow-sm">K</kbd> for command menu</span>
                     </div>
                 </motion.div>
                 <motion.div
@@ -74,7 +80,7 @@ const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-block py-1 px-4 rounded-full bg-white/5 border border-white/10 text-primary-text text-sm font-medium mb-6 backdrop-blur-md"
+                        className="inline-block max-w-full py-1.5 px-4 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 text-primary-text text-sm font-medium mb-6 backdrop-blur-md text-balance"
                     >
                         {profile.title}
                     </motion.span>

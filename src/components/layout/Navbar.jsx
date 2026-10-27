@@ -3,10 +3,8 @@ import { Menu, X } from "lucide-react";
 import {
     motion,
     AnimatePresence,
-    useScroll,
     useSpring,
-    useMotionValue,
-    useTransform
+    useMotionValue
 } from "framer-motion";
 
 /* =========================================================
@@ -77,15 +75,6 @@ const Navbar = () => {
     const [activeSection, setActiveSection] = useState("home");
 
     /* ===============================
-       SCROLL PROGRESS
-    =============================== */
-    const { scrollYProgress } = useScroll();
-    
-    // Map the scroll progress so it reaches 100% just slightly before the absolute bottom, 
-    // eliminating any fractional gap.
-    const scaleX = useTransform(scrollYProgress, [0, 0.99], [0, 1]);
-
-    /* ===============================
        NAVBAR BACKGROUND ON SCROLL
     =============================== */
     useEffect(() => {
@@ -139,6 +128,20 @@ const Navbar = () => {
     }, [isOpen]);
 
     /* ===============================
+       CLOSE MOBILE MENU ON ESCAPE
+    =============================== */
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === "Escape") setIsOpen(false);
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [isOpen]);
+
+    /* ===============================
        MOBILE MENU ANIMATIONS
     =============================== */
     const menuVariants = {
@@ -174,13 +177,8 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Scroll Progress Bar */}
-            <motion.div
-                className="fixed top-0 left-0 right-0 h-1 bg-primary z-[60] origin-left"
-                style={{ scaleX }}
-            />
-
             <nav
+                aria-label="Main"
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
                         ? "bg-dark/80 backdrop-blur-lg shadow-lg"
                         : "bg-transparent"
@@ -224,41 +222,45 @@ const Navbar = () => {
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 className="text-white hover:text-primary transition-colors p-2"
-                                aria-label="Toggle Menu"
+                                aria-label={isOpen ? "Close menu" : "Open menu"}
+                                aria-expanded={isOpen}
+                                aria-controls="mobile-menu"
                             >
-                                {isOpen ? <X size={32} /> : <Menu size={32} />}
+                                {isOpen ? <X size={32} aria-hidden="true" /> : <Menu size={32} aria-hidden="true" />}
                             </button>
                         </div>
                     </div>
                 </div>
-
-                {/* Mobile Overlay */}
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            variants={menuVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="fixed inset-0 bg-dark/95 backdrop-blur-xl z-[45] flex flex-col items-center justify-center md:hidden"
-                        >
-                            <div className="flex flex-col space-y-8 text-center w-full max-w-lg px-6">
-                                {navLinks.map(link => (
-                                    <motion.a
-                                        key={link.name}
-                                        href={link.href}
-                                        variants={itemVariants}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-2xl font-medium text-gray-300 hover:text-primary transition-colors duration-300"
-                                    >
-                                        {link.name}
-                                    </motion.a>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </nav>
+
+            {/* Mobile Overlay: kept outside <nav> because the scrolled navbar's
+                backdrop-filter would otherwise trap this fixed overlay inside it */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        id="mobile-menu"
+                        variants={menuVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="fixed inset-0 bg-dark/95 backdrop-blur-xl z-[45] flex flex-col items-center justify-center md:hidden"
+                    >
+                        <nav aria-label="Mobile" className="flex flex-col space-y-4 text-center w-full max-w-lg px-6">
+                            {navLinks.map(link => (
+                                <motion.a
+                                    key={link.name}
+                                    href={link.href}
+                                    variants={itemVariants}
+                                    onClick={() => setIsOpen(false)}
+                                    className="py-3 text-2xl font-medium text-gray-300 hover:text-primary-text transition-colors duration-300"
+                                >
+                                    {link.name}
+                                </motion.a>
+                            ))}
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };

@@ -31,7 +31,7 @@ const About = () => {
                                 height={932}
                                 sizes="(min-width: 768px) 560px, 100vw"
                                 alt={`Portrait of ${profile.name}`}
-                                className="w-full h-full object-cover grayscale px-4 pt-4 hover:grayscale-0 transition-all duration-500"
+                                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
                             />
                         </div>
                     </div>
