@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Mail, User, Briefcase, FileText, Code, Layers } from "lucide-react";
+import { Check, Copy, Mail, User, Briefcase, FileText, Code, Layers } from "lucide-react";
 import { profile } from "../../data/content";
 
 export const CommandPalette = () => {
     const [open, setOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
     const returnFocusRef = useRef(null);
 
     useEffect(() => {
@@ -32,11 +33,19 @@ export const CommandPalette = () => {
         }
     }, [open]);
 
-    const copyEmail = () => {
-        navigator.clipboard.writeText(profile.email);
-        setOpen(false);
-        // You could add a toast notification here
-        alert("Email copied to clipboard!");
+    const copyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText(profile.email);
+            setCopied(true);
+            // Leave the confirmation on screen briefly, then close
+            setTimeout(() => {
+                setOpen(false);
+                setCopied(false);
+            }, 1200);
+        } catch {
+            // Clipboard can be blocked (e.g. insecure context); fall back to the mail app
+            window.location.href = `mailto:${profile.email}`;
+        }
     };
 
     const scrollTo = (id) => {
@@ -111,8 +120,13 @@ export const CommandPalette = () => {
                                 </Command.Group>
 
                                 <Command.Group heading="Actions" className="px-2 py-1 text-xs text-gray-500 font-medium mt-2 border-t border-white/5 pt-3">
-                                    <Command.Item onSelect={copyEmail} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
-                                        <Copy size={16} /> Copy Email Address
+                                    {/* Fixed value so the item still matches the search while it shows "Email copied" */}
+                                    <Command.Item value="Copy Email Address" onSelect={copyEmail} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
+                                        {copied ? (
+                                            <><Check size={16} className="text-emerald-400" /> <span role="status">Email copied: {profile.email}</span></>
+                                        ) : (
+                                            <><Copy size={16} /> Copy Email Address</>
+                                        )}
                                     </Command.Item>
                                     <Command.Item onSelect={downloadResume} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
                                         <FileText size={16} /> Download Resume

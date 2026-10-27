@@ -112,3 +112,44 @@ export const caseStudies = [
         aiNote: "Built using Claude Code as an AI pair-programmer. I set the requirements and direction, made the technical decisions, and reviewed, tested and debugged the changes.",
     },
 ];
+
+// Grouped to match the résumé; "usedIn" ties each group to real work on this site.
+export const skillGroups = [
+    {
+        category: "Frontend",
+        icon: "layout",
+        items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind CSS", "Bootstrap", "jQuery", "Redux Toolkit", "Framer Motion"],
+        usedIn: "Van-Go Clearance, My Business Directory Local, this portfolio",
+    },
+    {
+        category: "Backend & data",
+        icon: "database",
+        items: ["SQL", "MySQL", "PostgreSQL", "Prisma", "PHP", "WordPress", "REST APIs", "Authentication"],
+        usedIn: "Van-Go Clearance, My Business Directory Local, B2B Growth Hub",
+    },
+    {
+        category: "Integrations & testing",
+        icon: "plug",
+        items: ["Stripe", "Resend", "AWS S3", "React Hook Form", "Zod", "Vitest"],
+        usedIn: "Van-Go Clearance, My Business Directory Local, this portfolio",
+    },
+    {
+        category: "Tools & workflow",
+        icon: "terminal",
+        items: ["Git", "GitHub", "GitLab", "Vercel", "Netlify", "Postman", "Figma", "Claude Code"],
+    },
+];
+
+// Project archive: only projects with evidence (résumé, live site or source). Newest first.
+// link: public URL, or null with `note` explaining why there is none.
+export const projectArchive = [
+    { year: "2026", title: "Van-Go Clearance", type: "Professional", stack: ["Next.js", "TypeScript", "Prisma", "Stripe"], link: "https://van-goclearance.co.uk/", caseStudy: "van-go-clearance" },
+    { year: "2026", title: "My Business Directory Local (Next.js rebuild)", type: "Professional", stack: ["Next.js", "TypeScript", "MySQL"], link: null, note: "In development", caseStudy: "my-business-directory-local" },
+    { year: "2026", title: "Developer portfolio (this site)", type: "Personal", stack: ["React", "Vite", "Tailwind CSS"], link: "https://github.com/imsidd02/my-portfolio", linkLabel: "Source code" },
+    { year: "2025", title: "PMS", type: "Professional", stack: ["Next.js", "TypeScript", "Prisma", "TanStack Query"], link: null, note: "Private" },
+    { year: "2025", title: "Award Night Websites", type: "Professional", stack: ["PHP", "MySQL", "jQuery", "Bootstrap"], link: null, note: "Private" },
+    { year: "2025", title: "Dev Aarti Sangrah", type: "Personal", stack: ["Next.js", "TypeScript", "Sanity"], link: null, note: "Collaborative" },
+    { year: "2024", title: "B2B Growth Hub", type: "Professional", stack: ["HTML", "CSS", "JavaScript", "Bootstrap", "PHP"], link: "https://www.b2bgrowthhub.org/" },
+    { year: null, title: "Compassion UK", type: "Professional", stack: ["Next.js", "React", "Tailwind CSS"], link: "https://www.compassionuk.org/", note: "Team project" },
+    { year: null, title: "Global HR Management System", type: "Professional", stack: ["React", "TypeScript"], link: "https://apps.globalhrin.com/", linkLabel: "Login page" },
+];

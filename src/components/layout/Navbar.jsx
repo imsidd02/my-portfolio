@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X } from "lucide-react";
+import { FileText, Menu, X } from "lucide-react";
+import { profile } from "../../data/content";
 import {
     motion,
     AnimatePresence,
@@ -200,7 +201,7 @@ const Navbar = () => {
                         </a>
 
                         {/* Desktop Menu (Magnetic Links) */}
-                        <div className="hidden md:flex space-x-8">
+                        <div className="hidden md:flex items-center gap-5 lg:gap-8">
                             {navLinks.map(link => {
                                 const sectionId = link.href.replace("#", "");
                                 const isActive = activeSection === sectionId;
@@ -215,6 +216,16 @@ const Navbar = () => {
                                     </MagneticLink>
                                 );
                             })}
+                            <a
+                                href={profile.resume}
+                                target="_blank"
+                                rel="noopener"
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-white bg-primary-strong hover:bg-primary-strong/90 transition-colors"
+                            >
+                                <FileText size={15} aria-hidden="true" />
+                                Résumé
+                                <span className="sr-only">(PDF, opens in a new tab)</span>
+                            </a>
                         </div>
 
                         {/* Mobile Button */}
@@ -257,6 +268,18 @@ const Navbar = () => {
                                     {link.name}
                                 </motion.a>
                             ))}
+                            <motion.a
+                                href={profile.resume}
+                                target="_blank"
+                                rel="noopener"
+                                variants={itemVariants}
+                                onClick={() => setIsOpen(false)}
+                                className="mx-auto mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full text-lg font-medium text-white bg-primary-strong"
+                            >
+                                <FileText size={18} aria-hidden="true" />
+                                Download Résumé
+                                <span className="sr-only">(PDF, opens in a new tab)</span>
+                            </motion.a>
                         </nav>
                     </motion.div>
                 )}
