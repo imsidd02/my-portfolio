@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Database, Layout, Smartphone, Terminal, Wrench } from "lucide-react";
+import { Database, Layout, Smartphone, Terminal } from "lucide-react";
 
 const Skills = () => {
     const skills = [

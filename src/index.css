@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   --color-primary: #6366f1;
+  /* #6366f1 is 4.4:1 on dark: use these for small text and solid buttons */
+  --color-primary-text: #818cf8;
+  --color-primary-strong: #4f46e5;
   --color-secondary: #a855f7;
   --color-dark: #0a0a0a;
 }
@@ -16,6 +19,30 @@
 
   body {
     @apply bg-dark text-white font-sans antialiased;
+  }
+
+  /* Keep anchored section headings clear of the fixed navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-text);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

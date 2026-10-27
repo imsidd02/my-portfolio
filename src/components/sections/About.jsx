@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import profileImg from "../../assets/siddharth-profile.jpeg";
+import Picture from "../ui/Picture";
+import { profile } from "../../data/content";
+import profileAvif480 from "../../assets/profile/siddharth-singh-480.avif";
+import profileAvif900 from "../../assets/profile/siddharth-singh-900.avif";
+import profileWebp480 from "../../assets/profile/siddharth-singh-480.webp";
+import profileWebp900 from "../../assets/profile/siddharth-singh-900.webp";
 
 const About = () => {
     return (
@@ -16,9 +21,16 @@ const About = () => {
                     <div className="relative group">
                         <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                         <div className="relative aspect-square rounded-2xl bg-zinc-900 overflow-hidden border border-white/10">
-                            <img
-                                src={profileImg}
-                                alt="Siddharth - Associate Software Engineer"
+                            <Picture
+                                sources={{
+                                    avif: `${profileAvif480} 480w, ${profileAvif900} 900w`,
+                                    webp: `${profileWebp480} 480w, ${profileWebp900} 900w`,
+                                }}
+                                fallback={profileWebp900}
+                                width={900}
+                                height={932}
+                                sizes="(min-width: 768px) 560px, 100vw"
+                                alt={`Portrait of ${profile.name}`}
                                 className="w-full h-full object-cover grayscale px-4 pt-4 hover:grayscale-0 transition-all duration-500"
                             />
                         </div>

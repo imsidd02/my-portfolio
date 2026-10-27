@@ -1,8 +1,6 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Command } from "lucide-react";
-import { lazy, Suspense } from "react";
-
-const Hero3D = lazy(() => import("./Hero3D").then(module => ({ default: module.Hero3D })));
+import { profile } from "../../data/content";
 
 const MagneticButton = ({ children, href, primary }) => {
     const x = useMotionValue(0);
@@ -35,7 +33,7 @@ const MagneticButton = ({ children, href, primary }) => {
             whileTap={{ scale: 0.97 }}
             className={`px-8 py-3.5 rounded-full font-medium flex items-center gap-2 transition-all duration-300 backdrop-blur-md
                 ${primary
-                    ? "bg-primary text-white shadow-xl shadow-primary/30 hover:shadow-primary/50"
+                    ? "bg-primary-strong text-white shadow-xl shadow-primary/30 hover:shadow-primary/50"
                     : "bg-white/5 hover:bg-white/10 border border-white/10 text-white"
                 }`}
         >
@@ -50,11 +48,6 @@ const Hero = () => {
             id="home"
             className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
         >
-            {/* 3D Particle Background */}
-            <Suspense fallback={null}>
-                <Hero3D />
-            </Suspense>
-
             {/* Background Glow */}
             <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary/20 rounded-full blur-[120px] pointer-events-none" />
@@ -81,9 +74,9 @@ const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-block py-1 px-4 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6 backdrop-blur-md"
+                        className="inline-block py-1 px-4 rounded-full bg-white/5 border border-white/10 text-primary-text text-sm font-medium mb-6 backdrop-blur-md"
                     >
-                        Associate Software Developer | Frontend Web Developer
+                        {profile.title}
                     </motion.span>
 
                     {/* Heading */}

@@ -59,6 +59,14 @@ const MagneticLink = ({ children, href, isActive }) => {
     );
 };
 
+const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
+];
+
 /* =========================================================
    🚀 NAVBAR COMPONENT
 ========================================================= */
@@ -76,14 +84,6 @@ const Navbar = () => {
     // eliminating any fractional gap.
     const scaleX = useTransform(scrollYProgress, [0, 0.99], [0, 1]);
 
-    const navLinks = [
-        { name: "Home", href: "#home" },
-        { name: "About", href: "#about" },
-        { name: "Skills", href: "#skills" },
-        { name: "Projects", href: "#projects" },
-        { name: "Contact", href: "#contact" },
-    ];
-
     /* ===============================
        NAVBAR BACKGROUND ON SCROLL
     =============================== */
@@ -92,7 +92,7 @@ const Navbar = () => {
             setIsScrolled(window.scrollY > 20);
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 

@@ -1,10 +1,35 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import Picture from "../ui/Picture";
 import b2bLogoImg from "../../assets/b2bLogo.svg";
-import compassionImg from "../../assets/compassionBanner.png";
-import ghrImg from "../../assets/globalHR.png";
+import compassionAvif480 from "../../assets/projects/compassion-uk-480.avif";
+import compassionAvif960 from "../../assets/projects/compassion-uk-960.avif";
+import compassionWebp480 from "../../assets/projects/compassion-uk-480.webp";
+import compassionWebp960 from "../../assets/projects/compassion-uk-960.webp";
+import ghrAvif480 from "../../assets/projects/global-hr-480.avif";
+import ghrAvif960 from "../../assets/projects/global-hr-960.avif";
+import ghrWebp480 from "../../assets/projects/global-hr-480.webp";
+import ghrWebp960 from "../../assets/projects/global-hr-960.webp";
 
+const compassionImg = {
+    sources: {
+        avif: `${compassionAvif480} 480w, ${compassionAvif960} 960w`,
+        webp: `${compassionWebp480} 480w, ${compassionWebp960} 960w`,
+    },
+    fallback: compassionWebp960,
+    width: 960,
+    height: 364,
+};
 
+const ghrImg = {
+    sources: {
+        avif: `${ghrAvif480} 480w, ${ghrAvif960} 960w`,
+        webp: `${ghrWebp480} 480w, ${ghrWebp960} 960w`,
+    },
+    fallback: ghrWebp960,
+    width: 960,
+    height: 456,
+};
 
 const Projects = () => {
     const projects = [
@@ -15,7 +40,7 @@ const Projects = () => {
             image: b2bLogoImg,
             isLogo: true,
             liveUrl: "https://www.b2bgrowthhub.org/",
-            githubUrl: "#",
+            githubUrl: null,
         },
         {
             title: "Compassion UK",
@@ -23,7 +48,7 @@ const Projects = () => {
             tags: ["Next.js", "React.js", "Tailwind CSS", "JavaScript"],
             image: compassionImg,
             liveUrl: "https://www.compassionuk.org/",
-            githubUrl: "#",
+            githubUrl: null,
         },
         {
             title: "Global HR Management System",
@@ -31,7 +56,7 @@ const Projects = () => {
             tags: ["React", "TypeScript", "HRMS", "Dashboard"],
             image: ghrImg,
             liveUrl: "https://apps.globalhrin.com/",
-            githubUrl: "#",
+            githubUrl: null,
         },
     ];
 
@@ -59,11 +84,22 @@ const Projects = () => {
                         >
                             <div className="relative overflow-hidden h-48">
                                 <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60 z-10" />
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className={`w-full h-full transform group-hover:scale-110 transition-transform duration-500 ${project.isLogo ? "object-contain p-8 bg-white/10" : "object-cover"}`}
-                                />
+                                {project.isLogo ? (
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-full transform group-hover:scale-110 transition-transform duration-500 object-contain p-8 bg-white/10"
+                                    />
+                                ) : (
+                                    <Picture
+                                        {...project.image}
+                                        alt={project.title}
+                                        sizes="(min-width: 1024px) 384px, (min-width: 768px) 50vw, 100vw"
+                                        className="w-full h-full transform group-hover:scale-110 transition-transform duration-500 object-cover"
+                                    />
+                                )}
                             </div>
                             <div className="p-6">
                                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
@@ -76,7 +112,7 @@ const Projects = () => {
                                     {project.tags.map((tag, i) => (
                                         <span
                                             key={i}
-                                            className="text-xs px-2 py-1 rounded bg-primary/10 text-primary font-medium"
+                                            className="text-xs px-2 py-1 rounded bg-primary/10 text-primary-text font-medium"
                                         >
                                             {tag}
                                         </span>
@@ -88,19 +124,21 @@ const Projects = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View live demo of ${project.title}`}
-                                        className="flex items-center gap-2 text-sm text-white hover:text-primary transition-colors"
+                                        className="flex items-center gap-2 py-2 text-sm text-white hover:text-primary-text transition-colors"
                                     >
-                                        <ExternalLink size={16} /> Live Demo
+                                        <ExternalLink size={16} aria-hidden="true" /> Live Demo
                                     </a>
-                                    <a
-                                        href={project.githubUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={`View source code of ${project.title}`}
-                                        className="flex items-center gap-2 text-sm text-white hover:text-primary transition-colors"
-                                    >
-                                        <Github size={16} /> Code
-                                    </a>
+                                    {project.githubUrl && (
+                                        <a
+                                            href={project.githubUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`View source code of ${project.title}`}
+                                            className="flex items-center gap-2 py-2 text-sm text-white hover:text-primary-text transition-colors"
+                                        >
+                                            <Github size={16} aria-hidden="true" /> Code
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

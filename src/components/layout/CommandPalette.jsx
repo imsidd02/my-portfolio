@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Command } from "cmdk";
 import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Mail, User, Briefcase, FileText, Code } from "lucide-react";
+import { profile } from "../../data/content";
 
 export const CommandPalette = () => {
     const [open, setOpen] = useState(false);
@@ -19,21 +20,22 @@ export const CommandPalette = () => {
     }, []);
 
     const copyEmail = () => {
-        navigator.clipboard.writeText("imsidd02@gmail,.com");
+        navigator.clipboard.writeText(profile.email);
         setOpen(false);
         // You could add a toast notification here
         alert("Email copied to clipboard!");
     };
 
     const scrollTo = (id) => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
         setOpen(false);
     };
 
     const downloadResume = () => {
         const link = document.createElement("a");
-        link.href = "/Siddharth-Singh-Resume.pdf";
-        link.download = "Siddharth-Singh-Resume.pdf";
+        link.href = profile.resume;
+        link.download = profile.resume.split("/").pop();
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
