@@ -43,11 +43,11 @@ const About = () => {
                         </h2>
 
                         <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-                            I'm an Associate Software Developer specializing in frontend development, React applications, and responsive user interfaces. I enjoy building clean, modern, and user-friendly web experiences that solve real-world problems.
+                            I'm a frontend developer and Associate Software Engineer, working with React.js and Next.js to build responsive user interfaces and production web applications. I enjoy building clean, modern, and user-friendly web experiences that solve real-world problems.
                         </p>
 
                         <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                            With 3+ years of experience in web development, I have worked on scalable applications and interactive UI components using modern technologies like React, JavaScript, and Tailwind CSS. I focus on writing efficient code and creating seamless digital experiences.
+                            With 3+ years of experience in web development, I have worked on scalable applications and interactive UI components using modern technologies like React, Next.js, JavaScript, and Tailwind CSS. I focus on writing efficient code and creating seamless digital experiences.
                         </p>
 
                         <div className="grid grid-cols-2 gap-6">

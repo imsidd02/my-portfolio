@@ -1,28 +1,8 @@
 import { motion } from "framer-motion";
 import { Calendar, Briefcase } from "lucide-react";
+import { experience as experiences } from "../../data/content";
 
 const Experience = () => {
-    const experiences = [
-        {
-            role: "Associate Software Developer",
-            company: "Geecon Private System Ltd",
-            period: "01.03.2023 - Present",
-            description: "Working on modern web applications and HR management systems with a focus on frontend development, responsive UI design, performance optimization, and scalable application architecture.",
-        },
-        {
-            role: "Trainee Software Developer",
-            company: "Geecon Private System Ltd",
-            period: "01.12.2022 - 01.03.2023",
-            description: "Assisted in developing and maintaining web application modules, fixed UI issues, collaborated with senior developers, and gained hands-on experience with real-world software development workflows.",
-        },
-        {
-            role: "Software Development Intern",
-            company: "Geecon Private System Ltd",
-            period: "01.06.2022 - 01.12.2022",
-            description: "Learned frontend development fundamentals, worked on internal projects, supported debugging tasks, and contributed to responsive website components and testing activities.",
-        },
-    ];
-
     return (
         <section id="experience" className="py-20 relative">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -38,7 +18,7 @@ const Experience = () => {
                 <div className="max-w-3xl mx-auto space-y-8">
                     {experiences.map((exp, index) => (
                         <motion.div
-                            key={index}
+                            key={exp.role}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -50,12 +30,12 @@ const Experience = () => {
                             <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
                                     <h3 className="text-xl font-bold flex items-center gap-2">
-                                        <Briefcase size={18} className="text-primary" />
+                                        <Briefcase size={18} className="text-primary" aria-hidden="true" />
                                         {exp.role}
                                     </h3>
                                     <span className="text-sm text-gray-400 flex items-center gap-1 mt-2 sm:mt-0">
-                                        <Calendar size={14} />
-                                        {exp.period}
+                                        <Calendar size={14} aria-hidden="true" />
+                                        <span className="tabular-nums">{exp.start} – {exp.end}</span>
                                     </span>
                                 </div>
                                 <h4 className="text-lg font-medium text-gray-300 mb-2">{exp.company}</h4>

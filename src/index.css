@@ -22,7 +22,8 @@
   }
 
   /* Keep anchored section headings clear of the fixed navbar */
-  section[id] {
+  section[id],
+  article[id] {
     scroll-margin-top: 5rem;
   }
 

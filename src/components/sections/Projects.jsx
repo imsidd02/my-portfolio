@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Picture from "../ui/Picture";
+import CaseStudy from "./CaseStudy";
+import { caseStudies } from "../../data/content";
 import b2bLogoImg from "../../assets/b2bLogo.svg";
 import compassionAvif480 from "../../assets/projects/compassion-uk-480.avif";
 import compassionAvif960 from "../../assets/projects/compassion-uk-960.avif";
@@ -72,10 +74,18 @@ const Projects = () => {
                     Featured <span className="text-primary">Projects</span>
                 </motion.h2>
 
+                <div className="space-y-8 mb-20">
+                    {caseStudies.map((study, index) => (
+                        <CaseStudy key={study.slug} study={study} index={index} />
+                    ))}
+                </div>
+
+                <h3 className="text-2xl font-bold mb-8">More projects</h3>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project, index) => (
                         <motion.div
-                            key={index}
+                            key={project.title}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -102,9 +112,9 @@ const Projects = () => {
                                 )}
                             </div>
                             <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                                <h4 className="text-xl font-bold mb-2 group-hover:text-primary-text transition-colors">
                                     {project.title}
-                                </h3>
+                                </h4>
                                 <p className="text-gray-400 text-sm mb-4 line-clamp-3">
                                     {project.description}
                                 </p>
