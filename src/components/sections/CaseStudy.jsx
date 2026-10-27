@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Sparkles } from "lucide-react";
+import Picture from "../ui/Picture";
 
 const StatusBadge = ({ status }) => {
     const live = status === "Live";
@@ -40,6 +41,19 @@ const CaseStudy = ({ study, index }) => (
         aria-labelledby={`${study.slug}-title`}
         className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-10"
     >
+        {study.image && (
+            <div className="mb-8 rounded-xl overflow-hidden border border-white/10 bg-zinc-900">
+                <Picture
+                    sources={study.image.sources}
+                    fallback={study.image.fallback}
+                    width={study.image.width}
+                    height={study.image.height}
+                    alt={study.image.alt}
+                    sizes="(min-width: 1280px) 1104px, 100vw"
+                    className="w-full h-auto block"
+                />
+            </div>
+        )}
         <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 lg:gap-12">
             <div>
                 <div className="flex flex-wrap items-center gap-3 mb-4">

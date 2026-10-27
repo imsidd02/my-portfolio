@@ -1,3 +1,10 @@
+import vanGoAvif480 from "../assets/projects/van-go-clearance-480.avif";
+import vanGoAvif960 from "../assets/projects/van-go-clearance-960.avif";
+import vanGoWebp480 from "../assets/projects/van-go-clearance-480.webp";
+import vanGoWebp960 from "../assets/projects/van-go-clearance-960.webp";
+import vanGoAvif1440 from "../assets/projects/van-go-clearance-1440.avif";
+import vanGoWebp1440 from "../assets/projects/van-go-clearance-1440.webp";
+
 // Single source of truth for personal details shown across the site.
 export const profile = {
     name: "Siddharth Singh",
@@ -13,28 +20,28 @@ export const profile = {
 export const experience = [
     {
         role: "Associate Software Engineer",
-        company: "Geecon Private System Ltd",
+        company: "Geecon Systems Pvt. Ltd.",
         start: "Jul 2025",
         end: "Present",
         description: "Building production web applications with Next.js and React, including booking journeys, customer portals and admin tooling, and making the implementation decisions, testing and debugging for them.",
     },
     {
         role: "Software Developer",
-        company: "Geecon Private System Ltd",
+        company: "Geecon Systems Pvt. Ltd.",
         start: "Mar 2023",
         end: "Jun 2025",
         description: "Worked on modern web applications and HR management systems with a focus on frontend development, responsive UI design, performance optimization, and scalable application architecture.",
     },
     {
         role: "Trainee Software Developer",
-        company: "Geecon Private System Ltd",
+        company: "Geecon Systems Pvt. Ltd.",
         start: "Dec 2022",
         end: "Mar 2023",
         description: "Assisted in developing and maintaining web application modules, fixed UI issues, collaborated with senior developers, and gained hands-on experience with real-world software development workflows.",
     },
     {
         role: "Software Development Intern",
-        company: "Geecon Private System Ltd",
+        company: "Geecon Systems Pvt. Ltd.",
         start: "Jun 2022",
         end: "Dec 2022",
         description: "Learned frontend development fundamentals, worked on internal projects, supported debugging tasks, and contributed to responsive website components and testing activities.",
@@ -53,6 +60,16 @@ export const caseStudies = [
         role: "Developer. I built the application end to end, from the booking journeys to the admin area.",
         url: "https://van-goclearance.co.uk/",
         urlLabel: "Visit live site",
+        image: {
+            sources: {
+                avif: `${vanGoAvif480} 480w, ${vanGoAvif960} 960w, ${vanGoAvif1440} 1440w`,
+                webp: `${vanGoWebp480} 480w, ${vanGoWebp960} 960w, ${vanGoWebp1440} 1440w`,
+            },
+            fallback: vanGoWebp960,
+            width: 960,
+            height: 477,
+            alt: "Van-Go Clearance homepage, with the quote call-to-action and service navigation",
+        },
         summary: "An online quoting and booking platform for a UK waste-clearance business offering skip hire, man & van and clearance services, with a customer portal and a staff admin area.",
         built: [
             "Multi-step booking journeys for each service: product and size selection, postcode address lookup, date and time-slot selection, and a running total that stays in view on mobile.",
