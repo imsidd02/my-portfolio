@@ -47,7 +47,17 @@
   }
 }
 
-/* Custom Scrollbar */
+/* Page scrollbar hidden so the reading-progress bar can run edge to edge;
+   wheel, touch and keyboard scrolling are unaffected. */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrollbars inside the page (e.g. the command palette list) */
 ::-webkit-scrollbar {
   width: 10px;
 }
