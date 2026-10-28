@@ -53,12 +53,12 @@ const About = () => {
                         <div className="grid grid-cols-2 gap-6">
                             <div>
                                 <h3 className="text-2xl font-bold text-white mb-2">3+</h3>
-                                <p className="text-gray-500">Years Experience</p>
+                                <p className="text-gray-400">Years Experience</p>
                             </div>
 
                             <div>
                                 <h3 className="text-2xl font-bold text-white mb-2">20+</h3>
-                                <p className="text-gray-500">Projects Completed</p>
+                                <p className="text-gray-400">Projects Completed</p>
                             </div>
                         </div>
                     </div>

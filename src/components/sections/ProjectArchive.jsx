@@ -19,7 +19,7 @@ const ProjectLink = ({ project }) => {
             </a>
         );
     }
-    return <span className="text-sm text-gray-500 whitespace-nowrap">{project.note}</span>;
+    return <span className="text-sm text-gray-400 whitespace-nowrap">{project.note}</span>;
 };
 
 const ProjectArchive = () => {
@@ -57,11 +57,11 @@ const ProjectArchive = () => {
                         key={project.title}
                         className="grid grid-cols-[3.5rem_minmax(0,1fr)] md:grid-cols-[4rem_minmax(0,1.6fr)_minmax(0,1.4fr)_auto] gap-x-4 gap-y-2 items-center py-4 border-b border-white/10"
                     >
-                        <span className="text-sm text-gray-500 tabular-nums">{project.year ?? "—"}</span>
+                        <span className="text-sm text-gray-400 tabular-nums">{project.year ?? "—"}</span>
 
                         <div className="min-w-0">
                             <p className="font-semibold text-white">{project.title}</p>
-                            <p className="text-xs text-gray-500 mt-0.5">
+                            <p className="text-xs text-gray-400 mt-0.5">
                                 {project.type}
                                 {project.link && project.note ? ` · ${project.note}` : ""}
                             </p>

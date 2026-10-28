@@ -12,7 +12,8 @@ const Footer = () => {
         <footer className="bg-black py-10 border-t border-white/10">
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center">
                 <div className="mb-4 md:mb-0">
-                    <p className="text-gray-400 text-sm">
+                    {/* The year is rendered at build time; allow it to differ around New Year */}
+                    <p className="text-gray-400 text-sm" suppressHydrationWarning>
                         &copy; {new Date().getFullYear()} {profile.name}. All rights reserved.
                     </p>
                 </div>

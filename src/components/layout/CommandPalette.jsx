@@ -94,11 +94,11 @@ export const CommandPalette = () => {
                                 className="w-full bg-transparent border-b border-white/10 px-4 py-4 text-white placeholder:text-gray-500 focus:outline-none"
                             />
                             <Command.List className="max-h-[300px] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10">
-                                <Command.Empty className="py-6 text-center text-sm text-gray-500">
+                                <Command.Empty className="py-6 text-center text-sm text-gray-400">
                                     No results found.
                                 </Command.Empty>
 
-                                <Command.Group heading="Navigation" className="px-2 py-1 text-xs text-gray-500 font-medium">
+                                <Command.Group heading="Navigation" className="px-2 py-1 text-xs text-gray-400 font-medium">
                                     <Command.Item onSelect={() => scrollTo("home")} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
                                         <User size={16} /> Home
                                     </Command.Item>
@@ -119,7 +119,7 @@ export const CommandPalette = () => {
                                     </Command.Item>
                                 </Command.Group>
 
-                                <Command.Group heading="Actions" className="px-2 py-1 text-xs text-gray-500 font-medium mt-2 border-t border-white/5 pt-3">
+                                <Command.Group heading="Actions" className="px-2 py-1 text-xs text-gray-400 font-medium mt-2 border-t border-white/5 pt-3">
                                     {/* Fixed value so the item still matches the search while it shows "Email copied" */}
                                     <Command.Item value="Copy Email Address" onSelect={copyEmail} className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm text-gray-300 hover:bg-white/10 hover:text-white cursor-pointer transition-colors aria-selected:bg-white/10 aria-selected:text-white">
                                         {copied ? (

@@ -1,12 +1,14 @@
+import { useSyncExternalStore } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Command, FileText, MapPin } from "lucide-react";
 import { profile } from "../../data/content";
 
-// Show the shortcut the visitor's keyboard actually has.
-const modifierKey =
-    typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)
-        ? "⌘"
-        : "Ctrl";
+// Show the shortcut the visitor's keyboard actually has. The pre-rendered HTML says "Ctrl";
+// React swaps in the browser's value after hydration without a mismatch.
+const subscribeToNothing = () => () => {};
+const getClientModifierKey = () => (/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? "⌘" : "Ctrl");
+const getServerModifierKey = () => "Ctrl";
+const useModifierKey = () => useSyncExternalStore(subscribeToNothing, getClientModifierKey, getServerModifierKey);
 
 const MagneticButton = ({ children, href, primary, ...linkProps }) => {
     const x = useMotionValue(0);
@@ -50,6 +52,8 @@ const MagneticButton = ({ children, href, primary, ...linkProps }) => {
 };
 
 const Hero = () => {
+    const modifierKey = useModifierKey();
+
     return (
         <section
             id="home"

@@ -57,7 +57,7 @@ const CaseStudy = ({ study, index }) => (
         <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 lg:gap-12">
             <div>
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <span className="text-sm font-mono text-gray-500 tabular-nums">
+                    <span className="text-sm font-mono text-gray-400 tabular-nums">
                         {String(index + 1).padStart(2, "0")}
                     </span>
                     <StatusBadge status={study.status} />
@@ -66,7 +66,7 @@ const CaseStudy = ({ study, index }) => (
                     {study.title}
                 </h3>
                 <p className="text-sm text-primary-text font-medium mb-1">{study.kind}</p>
-                <p className="text-sm text-gray-500 mb-4 tabular-nums">{study.period}</p>
+                <p className="text-sm text-gray-400 mb-4 tabular-nums">{study.period}</p>
                 <p className="text-sm text-gray-300 mb-6">
                     <span className="font-semibold text-white">My role: </span>
                     {study.role}
