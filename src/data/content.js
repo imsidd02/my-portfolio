@@ -16,35 +16,28 @@ export const profile = {
     resume: "/Siddharth-Singh-Resume.pdf",
 };
 
-// Most recent first. Dates as confirmed by Siddharth.
+// Most recent first. Dates and titles as on the résumé (confirmed by Siddharth).
 export const experience = [
     {
         role: "Associate Software Engineer",
         company: "Geecon Systems Pvt. Ltd.",
-        start: "Jul 2025",
+        start: "Apr 2025",
         end: "Present",
-        description: "Building production web applications with Next.js and React, including booking journeys, customer portals and admin tooling, and making the implementation decisions, testing and debugging for them.",
+        description: "Building production web applications with Next.js and React, including booking journeys, customer portals and admin tooling, alongside PHP, WordPress, AJAX and jQuery feature work on client sites.",
     },
     {
-        role: "Software Developer",
+        role: "Trainee Software Engineer",
         company: "Geecon Systems Pvt. Ltd.",
-        start: "Mar 2023",
-        end: "Jun 2025",
-        description: "Worked on modern web applications and HR management systems with a focus on frontend development, responsive UI design, performance optimization, and scalable application architecture.",
-    },
-    {
-        role: "Trainee Software Developer",
-        company: "Geecon Systems Pvt. Ltd.",
-        start: "Dec 2022",
-        end: "Mar 2023",
-        description: "Assisted in developing and maintaining web application modules, fixed UI issues, collaborated with senior developers, and gained hands-on experience with real-world software development workflows.",
+        start: "May 2023",
+        end: "Apr 2025",
+        description: "Contributed to client-facing websites built with WordPress, HTML and CSS; added interactive features and responsive UI with jQuery and Bootstrap; implemented forms, authentication and plugin customisations; and turned Figma and PSD designs into responsive layouts.",
     },
     {
         role: "Software Development Intern",
         company: "Geecon Systems Pvt. Ltd.",
-        start: "Jun 2022",
-        end: "Dec 2022",
-        description: "Learned frontend development fundamentals, worked on internal projects, supported debugging tasks, and contributed to responsive website components and testing activities.",
+        start: "Dec 2022",
+        end: "May 2023",
+        description: "Worked alongside senior developers on live projects, applying React.js, Next.js, Tailwind CSS and API integration, building responsive layouts and reusable UI components, and using Git in an agile team workflow.",
     },
 ];
 
