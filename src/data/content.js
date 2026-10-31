@@ -30,7 +30,7 @@ export const experience = [
         company: "Geecon Systems Pvt. Ltd.",
         start: "May 2023",
         end: "Apr 2025",
-        description: "Contributed to client-facing websites built with WordPress, HTML and CSS; added interactive features and responsive UI with jQuery and Bootstrap; implemented forms, authentication and plugin customisations; and turned Figma and PSD designs into responsive layouts.",
+        description: "Contributed to client-facing websites built with WordPress, HTML and CSS; added interactive features and responsive UI with jQuery and Bootstrap; implemented forms, authentication and plugin customisations; and turned designers' mock-ups into responsive layouts.",
     },
     {
         role: "Software Development Intern",
@@ -90,7 +90,7 @@ export const caseStudies = [
         urlLabel: "Current site (legacy PHP)",
         summary: "Rebuilding a long-running local business directory from a legacy PHP platform onto Next.js, sharing the existing database so the old and new sites can run side by side during the move.",
         built: [
-            "Public site with search and advanced search, categories, locations, business and member profiles, articles and membership pages: over 100 routes.",
+            "Public site with search and advanced search, categories, locations, business and member profiles, articles and membership pages: 100+ pages and API routes in all.",
             "Member dashboard where businesses manage their listing, categories, opening hours, products and services, and account details.",
             "Public forms for contact, enquiries, reviews, brochure requests and adding a missing business.",
             "Redirects from the old PHP URLs to the new routes, so existing links and search rankings carry over.",
@@ -101,7 +101,7 @@ export const caseStudies = [
             "Every dashboard query is scoped to the signed-in member and re-checks ownership on the server; user-entered HTML goes through an allowlist sanitiser.",
             "Data is saved in the legacy formats so the old site keeps working on the same records.",
         ],
-        stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MySQL", "AWS S3"],
+        stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MySQL"],
         aiNote: "Built using Claude Code as an AI pair-programmer. I set the requirements and direction, made the technical decisions, and reviewed, tested and debugged the changes.",
     },
 ];
@@ -123,13 +123,13 @@ export const skillGroups = [
     {
         category: "Integrations & testing",
         icon: "plug",
-        items: ["Stripe", "Resend", "AWS S3", "React Hook Form", "Zod", "Vitest"],
+        items: ["Stripe", "Resend", "Nodemailer", "React Hook Form", "Zod", "Vitest"],
         usedIn: "Van-Go Clearance, My Business Directory Local, this portfolio",
     },
     {
         category: "Tools & workflow",
         icon: "terminal",
-        items: ["Git", "GitHub", "GitLab", "Vercel", "Netlify", "Postman", "Figma", "Claude Code"],
+        items: ["Git", "GitHub", "Vercel", "Netlify", "Postman", "Claude Code"],
     },
 ];
 
